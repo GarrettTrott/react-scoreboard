@@ -1,14 +1,28 @@
-const desc =
-  "I just learned how to create a react node and render it to the DOM!";
+const Header = () => {
+  return (
+    <header>
+      <h1>Scoreboard</h1>
+      <span className="stats">Players: 1</span>
+    </header>
+  );
+};
 
-const myTitleID = "main-title";
-const name = "Garrett";
+const Counter = () => {
+  return (
+    <div className="counter">
+      <button className="counter-action decrement"> - </button>
+      <span className="counter-score">35</span>
+      <button className="counter-action increment"> + </button>
+    </div>
+  );
+};
 
-const header = (
-  <header>
-    <h1 id={myTitleID}>{name}'s First React Element!</h1>
-    <p>{desc}</p>
-  </header>
-);
-
-ReactDOM.render(header, document.getElementById("root"));
+const Player = () => {
+  return (
+    <div className="player">
+      <span className="player-name">Garrett</span>
+      <Counter />
+    </div>
+  );
+};
+ReactDOM.render(<Player />, document.getElementById("root"));
