@@ -16,10 +16,13 @@ export class Stopwatch extends Component {
       const now = Date.now()
       this.setState((prevState) => ({
         previousTime: now,
-        elapsedTime:
-          now - prevState.elapsedTime + (now - this.state.previousTime),
+        elapsedTime: prevState.elapsedTime + (now - this.state.previousTime),
       }))
     }
+  }
+
+  handelReset = () => {
+    this.setState({ elapsedTime: 0 })
   }
 
   handelStopwatch = () => {
@@ -32,14 +35,16 @@ export class Stopwatch extends Component {
   }
 
   render() {
+    const seconds = Math.floor(this.state.elapsedTime / 1000)
+
     return (
       <div className="stopwatch">
         <h2>Stopwatch</h2>
-        <span className="stopwatch-time">0</span>
+        <span className="stopwatch-time">{seconds}</span>
         <button onClick={this.handelStopwatch}>
           {this.state.isRunning ? 'Stop' : 'start'}
         </button>
-        <button>Reset</button>
+        <button onClick={this.handelReset}>Reset</button>
       </div>
     )
   }
